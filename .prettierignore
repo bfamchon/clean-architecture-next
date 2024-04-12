@@ -1,0 +1,9 @@
+**/build
+**/www
+**/loader
+**/dist
+**/docs
+**/coverage
+**/CHANGELOG.md
+**/.*
+**/*.d.ts
