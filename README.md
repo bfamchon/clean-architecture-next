@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Clean NextJS Template
 
-## Getting Started
+## Development environment setup
 
-First, run the development server:
+### VOLTA
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[Volta](volta.sh) is used to manage node versions. Just follow the guide to install Volta and your first NodeJS version.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project pin a specific version of NodeJS that you can see in [package.json](./package.json) under `volta` entry.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+It's used to share the same node version across the team.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### PNPM
 
-## Learn More
+In order to manage dependencies, I suggest [PNPM](pnpm.io) which is a really efficient package manager.
 
-To learn more about Next.js, take a look at the following resources:
+You just need to verify that you have access to it in CLI by typing `pnpm`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Use `volta install pnpm` if you don't.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### VSCODE
 
-## Deploy on Vercel
+Just use it, I suggest some good extensions in this project ✌️
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`pnpm install` to install all dependencies and setup git hooks.
+
+`pnpm dev` to launch project in development mode.
+
+`pnpm test` to launch tests.
+
+These are principals commands to verify that everything is well setup.
+Other commands are listed in `package.json`.
+
+## Project Tooling
+
+## Husky
+
+Git hooks are used to launch command on git actions (push, commit...).
+
+Here, we used [Husky](https://github.com/typicode/husky) and you can find concerned git hooks in the `.husky` directory.
+
+### Commit lint
+
+In order to share the same commit conventions, we use `commitlint` which validate our commit messages, using git hooks, and following [Conventional Commits rules](https://www.conventionalcommits.org)
+
+## Prettier and Linter
+
+Prettier and ESLint are used to keep the same good coding rules.
+
+The git hook (`hook:pre-commit`) will pretty changed file, and a VSCode rule will activate "formatOnSave" based on Prettier config.
+
+## Project sources structure
