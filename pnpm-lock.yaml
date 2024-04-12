@@ -26,7 +26,7 @@ devDependencies:
     specifier: ^18
     version: 18.2.25
   eslint:
-    specifier: ^8
+    specifier: ^8.57.0
     version: 8.57.0
   eslint-config-next:
     specifier: 14.2.0
