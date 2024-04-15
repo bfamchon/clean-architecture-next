@@ -4,7 +4,8 @@ import { companiesFetchingStatusSelector } from '@/modules/sinister/core/selecto
 import { selectForm } from '@/modules/sinister/core/selectors/form.selector';
 import { fetchCompanies } from '@/modules/sinister/core/use-cases/fetch-companies.use-case';
 import { setInsuranceContractForm } from '@/modules/sinister/core/use-cases/set-insurance-contract-form.use-case';
-import { RootState, useAppDispatch } from '@/modules/store/store';
+import { RootState } from '@/modules/store/types';
+import { useAppDispatch } from '@/modules/store/use-app-dispatch';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 

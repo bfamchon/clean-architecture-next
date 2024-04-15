@@ -2,7 +2,7 @@ import { FormStep, SinisterForm, Submitter } from '@/modules/sinister/core/entit
 import { SubmitterForm } from '@/modules/sinister/core/form/submitter.form';
 import { selectForm } from '@/modules/sinister/core/selectors/form.selector';
 import { sinisterSlice } from '@/modules/sinister/core/store/sinister.slice';
-import { useAppDispatch } from '@/modules/store/store';
+import { useAppDispatch } from '@/modules/store/use-app-dispatch';
 import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 

@@ -1,6 +1,7 @@
 import { StubCompaniesGateway } from '@/modules/sinister/core/infrastructure/stub-companies.gateway';
 import { Dependencies } from '@/modules/store/dependencies';
-import { createStore, RootState } from '@/modules/store/store';
+import { createStore } from '@/modules/store/store';
+import { RootState } from '@/modules/store/types';
 
 /**
  * Create testing dependencies with provided defaults
