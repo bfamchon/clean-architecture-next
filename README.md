@@ -63,3 +63,85 @@ Prettier and ESLint are used to keep the same good coding rules.
 The git hook (`hook:pre-commit`) will pretty changed file, and a VSCode rule will activate "formatOnSave" based on Prettier config.
 
 ## Project sources structure
+
+```js
+📦src
+ ┣ 📂app // NextJS files and routing
+ ┃ ┣ 📜favicon.ico
+ ┃ ┣ 📜globals.css
+ ┃ ┣ 📜layout.tsx
+ ┃ ┗ 📜page.tsx
+ ┗ 📂modules // Where we will mostly write our code
+ ┃ ┣ 📂app // Our application setup and entrypoint
+ ┃ ┃ ┣ 📂react
+ ┃ ┃ ┃ ┣ 📜AppWrapper.tsx
+ ┃ ┃ ┃ ┣ 📜DependenciesProvider.tsx
+ ┃ ┃ ┃ ┗ 📜Layout.tsx
+ ┃ ┃ ┗ 📜main.ts
+ ┃ ┣ 📂components // React components shared between our domain
+ ┃ ┃ ┣ 📂form
+ ┃ ┃ ┃ ┗ 📜Form.tsx
+ ┃ ┃ ┣ 📂ui
+ ┃ ┃ ┃ ┣ 📜button.tsx
+ ┃ ┃ ┃ ┣ 📜buttonVariants.ts
+ ┃ ┃ ┃ ┣ 📜input.tsx
+ ┃ ┃ ┃ ┣ 📜select.tsx
+ ┃ ┃ ┃ ┗ 📜tooltip.tsx
+ ┃ ┃ ┗ 📜LinkAsButton.tsx
+ ┃ ┣ 📂core
+ ┃ ┃ ┣ 📜id-provider.ts
+ ┃ ┃ ┣ 📜stub.id-provider.ts
+ ┃ ┃ ┗ 📜system.id-provider.ts
+ ┃ ┣ 📂shared // Shared utility code
+ ┃ ┃ ┣ 📜errors.utils.ts
+ ┃ ┃ ┣ 📜invariant.ts
+ ┃ ┃ ┗ 📜utils.ts
+ ┃ ┣ 📂sinister // Code concerning our domain Sinister
+ ┃ ┃ ┣ 📂core
+ ┃ ┃ ┃ ┣ 📂entity // Our domain entities and how to create them
+ ┃ ┃ ┃ ┃ ┣ 📜company.factory.ts
+ ┃ ┃ ┃ ┃ ┗ 📜sinister.domain-model.ts
+ ┃ ┃ ┃ ┣ 📂form // our form business logic
+ ┃ ┃ ┃ ┃ ┣ 📜insuranceContract.form.test.ts
+ ┃ ┃ ┃ ┃ ┣ 📜insuranceContract.form.ts
+ ┃ ┃ ┃ ┃ ┗ 📜submitter.form.ts
+ ┃ ┃ ┃ ┣ 📂infrastructure
+ ┃ ┃ ┃ ┃ ┣ 📂interfaces
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜companies.gateway.ts
+ ┃ ┃ ┃ ┃ ┣ 📜fake-companies.gateway.ts
+ ┃ ┃ ┃ ┃ ┗ 📜stub-companies.gateway.ts
+ ┃ ┃ ┃ ┣ 📂selectors // Redux selectors
+ ┃ ┃ ┃ ┃ ┣ 📜companies.selector.ts
+ ┃ ┃ ┃ ┃ ┣ 📜form.selector.ts
+ ┃ ┃ ┃ ┃ ┗ 📜step.selector.ts
+ ┃ ┃ ┃ ┣ 📂store // Redux slices and listeners
+ ┃ ┃ ┃ ┃ ┣ 📜fetcher.listener.ts
+ ┃ ┃ ┃ ┃ ┣ 📜sinister-form-step.listener.ts
+ ┃ ┃ ┃ ┃ ┗ 📜sinister.slice.ts
+ ┃ ┃ ┃ ┗ 📂use-cases
+ ┃ ┃ ┃ ┃ ┣ 📜fetch-companies.use-case.test.ts
+ ┃ ┃ ┃ ┃ ┣ 📜fetch-companies.use-case.ts
+ ┃ ┃ ┃ ┃ ┗ 📜set-insurance-contract-form.use-case.ts
+ ┃ ┃ ┗ 📂react
+ ┃ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┃ ┗ 📂steps
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜Step.tsx
+ ┃ ┃ ┃ ┣ 📂pages
+ ┃ ┃ ┃ ┃ ┗ 📜SinisterDeclaration.tsx
+ ┃ ┃ ┃ ┗ 📂sections
+ ┃ ┃ ┃ ┃ ┣ 📂insurance-contract
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜InsuranceContractSection.tsx
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜use-insurance-contract.hook.ts // Hooks are used as presenters to give data to our sections components
+ ┃ ┃ ┃ ┃ ┗ 📂submitter
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜SubmitterSection.tsx
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜use-submitter.hook.ts
+ ┃ ┣ 📂store // Global Redux store
+ ┃ ┃ ┣ 📜create-app-thunk.ts
+ ┃ ┃ ┣ 📜dependencies.ts
+ ┃ ┃ ┣ 📜root-reducer.ts
+ ┃ ┃ ┣ 📜store.ts
+ ┃ ┃ ┣ 📜types.ts
+ ┃ ┃ ┗ 📜use-app-dispatch.ts
+ ┃ ┗ 📂testing // Testing setup
+ ┃ ┃ ┗ 📜tests-environment.ts
+```
