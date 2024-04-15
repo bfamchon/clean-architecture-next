@@ -1,4 +1,4 @@
-import { StubCompaniesGateway } from '@/modules/sinister/core/infrastructure/stub-companies.gateway';
+import { StubCompaniesGateway } from '@/modules/sinister/core/infrastructure/testing/stub-companies.gateway';
 import { Dependencies } from '@/modules/store/dependencies';
 import { createStore } from '@/modules/store/store';
 import { RootState } from '@/modules/store/types';
