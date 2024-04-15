@@ -45,6 +45,17 @@ Here, we used [Husky](https://github.com/typicode/husky) and you can find concer
 
 In order to share the same commit conventions, we use `commitlint` which validate our commit messages, using git hooks, and following [Conventional Commits rules](https://www.conventionalcommits.org)
 
+### Circular dependencies
+
+The problem with circular dependencies is rather like the chicken and egg problem.
+
+If you depend on me setting something up, and I depend on you setting something up, how do we start?
+
+The corollary of this is how do we end - if I have a reference to your resource and you have a reference to mine, I can never clean up because that would break you, and you cannot clean up because that would break me.
+
+To avoid circular dependencies in our project, we use [madge](https://github.com/pahen/madge).
+Madge is run on pre-push hook.
+
 ## Prettier and Linter
 
 Prettier and ESLint are used to keep the same good coding rules.

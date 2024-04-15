@@ -1,5 +1,5 @@
-import { buttonVariants } from '@/components/ui/buttonVariants';
-import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/modules/components/ui/buttonVariants';
+import { cn } from '@/modules/shared/utils';
 import Link from 'next/link';
 import React from 'react';
 

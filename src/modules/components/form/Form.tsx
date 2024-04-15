@@ -1,5 +1,5 @@
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { cn } from '@/lib/utils';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/modules/components/ui/tooltip';
+import { cn } from '@/modules/shared/utils';
 import * as Form from '@radix-ui/react-form';
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 import { ReactNode } from 'react';

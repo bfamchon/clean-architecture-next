@@ -1,8 +1,8 @@
 'use client';
 
-import { ActiveStep, Step } from '@/components/steps/Step';
 import { FormStep } from '@/modules/sinister/core/entity/sinister.domain-model';
 import { selectStep } from '@/modules/sinister/core/selectors/step.selector';
+import { ActiveStep, Step } from '@/modules/sinister/react/components/steps/Step';
 import { InsuranceContractSection } from '@/modules/sinister/react/sections/insurance-contract/InsuranceContractSection';
 import { SubmitterSection } from '@/modules/sinister/react/sections/submitter/SubmitterSection';
 import { useSelector } from 'react-redux';

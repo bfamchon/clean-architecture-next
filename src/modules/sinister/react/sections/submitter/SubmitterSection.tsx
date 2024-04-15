@@ -1,6 +1,12 @@
-import { FormField, FormLabel, FormLabelText, FormLabelTextRequired, FormRoot } from '@/components/form/Form';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import {
+  FormField,
+  FormLabel,
+  FormLabelText,
+  FormLabelTextRequired,
+  FormRoot
+} from '@/modules/components/form/Form';
+import { Button } from '@/modules/components/ui/button';
+import { Input } from '@/modules/components/ui/input';
 import {
   Select,
   SelectContent,
@@ -9,7 +15,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue
-} from '@/components/ui/select';
+} from '@/modules/components/ui/select';
 import { SubmitterType } from '@/modules/sinister/core/entity/sinister.domain-model';
 import { useSubmitter } from '@/modules/sinister/react/sections/submitter/use-submitter.hook';
 import { FormControl, FormMessage } from '@radix-ui/react-form';
