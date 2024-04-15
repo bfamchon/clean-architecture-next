@@ -1,6 +1,6 @@
-pnpm hook:pre-push
+pnpm test
 
-if pnpx madge --extensions js,jsx,ts,tsx ./src --circular --ts-config tsconfig.json; then
+if pnpm circular-deps; then
   echo "✔️  Everything is fine, well played !"
 else
   echo "⚠️  Circular dependencies errors are met, please fix them !"

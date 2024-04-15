@@ -11,6 +11,7 @@
     "type-check": "tsc --noEmit",
     "pretty": "pretty-quick --staged",
     "prepare": "husky",
+    "circular-deps": "madge --extensions js,jsx,ts,tsx ./src --circular --ts-config tsconfig.json",
     "hook:pre-commit": "pnpm type-check && pnpm lint && pnpm pretty",
     "hook:pre-push": "pnpm test"
   },
