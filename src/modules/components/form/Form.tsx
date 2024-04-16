@@ -1,15 +1,16 @@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/modules/components/ui/tooltip';
 import { cn } from '@/modules/shared/utils';
+import { Box, TextField, TextFieldProps } from '@mui/material';
 import * as Form from '@radix-ui/react-form';
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 import { ReactNode } from 'react';
 
 export const FormRoot = ({ children }: { children: ReactNode }) => (
-  <Form.Root className="w-full max-w-lg m-auto space-y-4">{children}</Form.Root>
+  <Box className="w-full max-w-lg m-auto space-y-4">{children}</Box>
 );
 
-export const FormField = ({ className, ...props }: Form.FormFieldProps) => (
-  <Form.Field className={cn('space-y-2', className)} {...props} />
+export const FormField = ({ className, ...props }: TextFieldProps) => (
+  <TextField className={cn('space-y-2', className)} {...props} />
 );
 
 export const FormLabel = ({

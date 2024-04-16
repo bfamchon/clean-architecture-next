@@ -10,6 +10,7 @@ export const useSubmitter = () => {
   function onPrevious() {
     dispatch(sinisterSlice.actions.setStep(FormStep.INSURANCE_CONTRACT));
   }
+  function onNext() {}
 
   function updateField<T extends keyof Submitter>(key: T, value: Submitter[T]) {
     console.log('updateField', key, value);
@@ -22,8 +23,10 @@ export const useSubmitter = () => {
 
   return {
     onPrevious,
+    onNext,
     submitterTypes: ['Personne', 'Entreprise'],
     form,
-    updateField
+    updateField,
+    isSubmittable: false
   };
 };

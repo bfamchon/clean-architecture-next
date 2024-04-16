@@ -5,6 +5,7 @@ import { selectStep } from '@/modules/sinister/core/selectors/step.selector';
 import { ActiveStep, Step } from '@/modules/sinister/react/components/steps/Step';
 import { InsuranceContractSection } from '@/modules/sinister/react/sections/insurance-contract/InsuranceContractSection';
 import { SubmitterSection } from '@/modules/sinister/react/sections/submitter/SubmitterSection';
+import { Box } from '@mui/material';
 import { useSelector } from 'react-redux';
 
 const steps = ['Contrat', 'Souscripteur', 'Courtier', 'Construction', 'Sinistre', 'Pièces', 'Validation'];
@@ -18,14 +19,14 @@ export const Sinister = () => {
     return <Step key={step}>{step}</Step>;
   };
   return (
-    <div className="flex flex-col w-screen h-screen min-h-screen container p-4">
-      <header className="">
+    <Box sx={{ marginTop: 2 }}>
+      <Box sx={{ margin: 2 }}>
         <ol className="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
           {steps.map((step, index) => renderStep(step, index))}
         </ol>
-      </header>
+      </Box>
       {stepNumber === FormStep.INSURANCE_CONTRACT && <InsuranceContractSection />}
       {stepNumber === FormStep.SUBMITTER && <SubmitterSection />}
-    </div>
+    </Box>
   );
 };

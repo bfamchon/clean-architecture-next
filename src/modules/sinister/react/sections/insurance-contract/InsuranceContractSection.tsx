@@ -1,105 +1,68 @@
-import {
-  FormField,
-  FormLabel,
-  FormLabelText,
-  FormLabelTextRequired,
-  FormRoot
-} from '@/modules/components/form/Form';
-import { Button } from '@/modules/components/ui/button';
-import { Input } from '@/modules/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue
-} from '@/modules/components/ui/select';
 import { useInsuranceContract } from '@/modules/sinister/react/sections/insurance-contract/use-insurance-contract.hook';
-import * as Form from '@radix-ui/react-form';
-import { type ChangeEvent } from 'react';
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { ChangeEvent } from 'react';
 
 export const InsuranceContractSection = () => {
   const presenter = useInsuranceContract();
 
   return (
-    <FormRoot>
-      <FormField name="insurance-company">
-        <FormLabel
-          tooltipText={
-            <>
-              Lorem ipsum dolor sit amet <br /> consectetur adipisicing elit.
-            </>
-          }
-          label={<FormLabelTextRequired text="Compagnie d'assurance" />}
-          htmlFor={'insurance-company'}
-        />
-        <Form.Control asChild>
+    <>
+      <Box
+        component="form"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
+          maxWidth: 500,
+          margin: 'auto'
+        }}
+        noValidate
+      >
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Compagnie d&nbsp;assurance</InputLabel>
           <Select
-            required
+            labelId="demo-simple-select-label"
+            id="insurance-company"
             value={presenter.form.insuranceContract.company.id}
-            onValueChange={presenter.updateCompany}
+            label="Compagnie d'assurance"
+            onChange={(event) => presenter.updateCompany(event.target.value)}
           >
-            <SelectTrigger className="w-full" id="insurance-company" aria-label="Companies">
-              <SelectValue
-                placeholder="Sélectionner une compagnie"
-                aria-label={presenter.form.insuranceContract.company.name}
-              >
-                {presenter.form.insuranceContract.company.name}
-              </SelectValue>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Assurances</SelectLabel>
-                {presenter.companies.map((company) => (
-                  <SelectItem key={company.id} value={company.id}>
-                    {company.name}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
+            {presenter.companies.map((company) => (
+              <MenuItem key={company.id} value={company.id}>
+                {company.name}
+              </MenuItem>
+            ))}
           </Select>
-        </Form.Control>
-      </FormField>
-      <FormField name="contract-number">
-        <FormLabel
-          tooltipText={
-            <>
-              Lorem ipsum dolor sit amet <br /> consectetur adipisicing elit.
-            </>
-          }
-          label={<FormLabelTextRequired text="Numéro de contrat" />}
-        />
-        <Form.Control asChild>
-          <Input
-            type="text"
-            required
+        </FormControl>
+        <FormControl fullWidth>
+          <TextField
+            id="contract-number"
+            label="Numéro de contrat"
             value={presenter.form.insuranceContract.contractNumber}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               presenter.updateField('contractNumber', e.target.value)
             }
           />
-        </Form.Control>
-        <Form.Message className="space-y-2 text-destructive" match="valueMissing">
-          Veuillez entrer un numéro de contrat
-        </Form.Message>
-      </FormField>
-      <FormField name="subscriber">
-        <FormLabel label={<FormLabelText text="Souscripteur" />} />
-        <Form.Control asChild>
-          <Input
-            type="text"
+        </FormControl>
+        <FormControl fullWidth>
+          <TextField
+            id="subscriber"
+            label="Souscripteur"
             value={presenter.form.insuranceContract.subscriber}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               presenter.updateField('subscriber', e.target.value)
             }
           />
-        </Form.Control>
-      </FormField>
-      <Button type="submit" className="w-full" onClick={presenter.onNext} disabled={!presenter.isSubmittable}>
-        Suivant
-      </Button>
-    </FormRoot>
+        </FormControl>
+        <Button
+          type="submit"
+          onClick={presenter.onNext}
+          disabled={!presenter.isSubmittable}
+          variant="contained"
+        >
+          Suivant
+        </Button>
+      </Box>
+    </>
   );
 };

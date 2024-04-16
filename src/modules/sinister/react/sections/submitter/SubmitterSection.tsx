@@ -1,320 +1,176 @@
-import {
-  FormField,
-  FormLabel,
-  FormLabelText,
-  FormLabelTextRequired,
-  FormRoot
-} from '@/modules/components/form/Form';
-import { Button } from '@/modules/components/ui/button';
-import { Input } from '@/modules/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue
-} from '@/modules/components/ui/select';
 import { SubmitterType } from '@/modules/sinister/core/entity/sinister.domain-model';
 import { useSubmitter } from '@/modules/sinister/react/sections/submitter/use-submitter.hook';
-import { FormControl, FormMessage } from '@radix-ui/react-form';
+import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { ChangeEvent } from 'react';
 
 export const SubmitterSection = () => {
   const presenter = useSubmitter();
   return (
-    <FormRoot>
-      <FormField name="submitter-type">
-        <FormLabel
-          tooltipText={
-            <>
-              Lorem ipsum dolor sit amet <br /> consectetur adipisicing elit.
-            </>
-          }
-          label={<FormLabelTextRequired text="Type de déclarant" />}
-          htmlFor={'submitter-type'}
+    <Box
+      component="form"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        maxWidth: 500,
+        margin: 'auto'
+      }}
+      noValidate
+    >
+      <FormControl fullWidth>
+        <InputLabel id="submitter-type-label">Type de déclarant</InputLabel>
+        <Select
+          labelId="submitter-type-label"
+          id="submitter-type"
+          value={presenter.form.submitter.type}
+          label="Type de déclarant"
+          onChange={(event) => presenter.updateField('type', event.target.value as SubmitterType)}
+        >
+          {presenter.submitterTypes.map((type) => (
+            <MenuItem key={type} value={type}>
+              {type}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          id="family-name"
+          autoComplete="family-name"
+          label="Nom"
+          value={presenter.form.submitter.name}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => presenter.updateField('name', e.target.value)}
         />
-        <FormControl asChild>
-          <Select
-            required
-            value={presenter.form.submitter.type}
-            onValueChange={(value: SubmitterType) => presenter.updateField('type', value)}
-          >
-            <SelectTrigger className="w-full" id="insurance-company" aria-label="Companies">
-              <SelectValue
-                placeholder="Sélectionner une compagnie"
-                aria-label={presenter.form.submitter.type}
-              >
-                {presenter.form.submitter.type}
-              </SelectValue>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Types</SelectLabel>
-                {presenter.submitterTypes.map((type) => (
-                  <SelectItem key={type} value={type}>
-                    {type}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </FormControl>
-      </FormField>
-      <FormField name="name">
-        <FormLabel
-          tooltipText={
-            <>
-              hello <br /> world
-            </>
-          }
-          label={<FormLabelTextRequired text="Nom" />}
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          id="given-name"
+          label="Prénom"
+          autoComplete="given-name"
+          value={presenter.form.submitter.firstName}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => presenter.updateField('firstName', e.target.value)}
         />
-        <FormControl asChild>
-          <Input
-            type="text"
-            autoComplete="family-name"
-            required
-            value={presenter.form.submitter.name}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => presenter.updateField('name', e.target.value)}
-          />
-        </FormControl>
-        <FormMessage className="space-y-2 text-destructive" match="valueMissing">
-          Veuillez entrer votre nom de famille.
-        </FormMessage>
-      </FormField>
-      <FormField name="first-name">
-        <FormLabel
-          tooltipText={
-            <>
-              hello <br /> world
-            </>
-          }
-          label={<FormLabelTextRequired text="Prénom" />}
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          id="address"
+          label="Adresse"
+          autoComplete="street-address"
+          value={presenter.form.submitter.address}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => presenter.updateField('address', e.target.value)}
         />
-        <FormControl asChild>
-          <Input
-            type="text"
-            autoComplete="given-name"
-            required
-            value={presenter.form.submitter.firstName}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              presenter.updateField('firstName', e.target.value)
-            }
-          />
-        </FormControl>
-        <FormMessage className="space-y-2 text-destructive" match="valueMissing">
-          Veuillez entrer votre prénom.
-        </FormMessage>
-      </FormField>
-      <FormField name="address">
-        <FormLabel
-          tooltipText={
-            <>
-              hello <br /> world
-            </>
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          id="address-2"
+          label="Adresse (ligne 2)"
+          autoComplete="address-line2"
+          value={presenter.form.submitter.addressLine2}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            presenter.updateField('addressLine2', e.target.value)
           }
-          label={<FormLabelTextRequired text="Adresse" />}
         />
-        <FormControl asChild>
-          <Input
-            type="text"
-            autoComplete="street-address"
-            required
-            value={presenter.form.submitter.address}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => presenter.updateField('address', e.target.value)}
-          />
-        </FormControl>
-        <FormMessage className="space-y-2 text-destructive" match="valueMissing">
-          Veuillez entrer votre addresse.
-        </FormMessage>
-      </FormField>
-      <FormField name="address-2">
-        <FormLabel
-          tooltipText={
-            <>
-              hello <br /> world
-            </>
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          id="address-3"
+          label="Adresse (ligne 3)"
+          autoComplete="address-line3"
+          value={presenter.form.submitter.addressLine3}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            presenter.updateField('addressLine3', e.target.value)
           }
-          label={<FormLabelText text="Adresse (ligne 2)" />}
         />
-        <FormControl asChild>
-          <Input
-            type="text"
-            autoComplete="address-line2"
-            value={presenter.form.submitter.addressLine2}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              presenter.updateField('addressLine2', e.target.value)
-            }
-          />
-        </FormControl>
-      </FormField>
-      <FormField name="address-3">
-        <FormLabel
-          tooltipText={
-            <>
-              hello <br /> world
-            </>
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          id="address-4"
+          label="Adresse (ligne 4)"
+          autoComplete="address-level4"
+          value={presenter.form.submitter.addressLine4}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            presenter.updateField('addressLine4', e.target.value)
           }
-          label={<FormLabelText text="Adresse (ligne 3)" />}
         />
-        <FormControl asChild>
-          <Input
-            type="text"
-            autoComplete="address-line3"
-            value={presenter.form.submitter.addressLine3}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              presenter.updateField('addressLine3', e.target.value)
-            }
-          />
-        </FormControl>
-      </FormField>
-      <FormField name="address-4">
-        <FormLabel
-          tooltipText={
-            <>
-              hello <br /> world
-            </>
+      </FormControl>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 2
+        }}
+      >
+        <TextField
+          sx={{ flex: 1 }}
+          id="phoneNumber"
+          label="Téléphone"
+          autoComplete="tel"
+          type="tel"
+          value={presenter.form.submitter.phoneNumber}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            presenter.updateField('phoneNumber', e.target.value)
           }
-          label={<FormLabelText text="Adresse (ligne 4)" />}
         />
-        <FormControl asChild>
-          <Input
-            type="text"
-            autoComplete="address-level4"
-            value={presenter.form.submitter.addressLine4}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              presenter.updateField('addressLine4', e.target.value)
-            }
-          />
-        </FormControl>
-      </FormField>
-      <div className="flex flex-wrap gap-4 min-w-32">
-        <FormField name="phone" className="flex-1 min-w-32">
-          <FormLabel
-            tooltipText={
-              <>
-                hello <br /> world
-              </>
-            }
-            label={<FormLabelTextRequired text="Téléphone" />}
-          />
-          <FormControl asChild>
-            <Input
-              type="tel"
-              autoComplete="tel"
-              value={presenter.form.submitter.phoneNumber}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                presenter.updateField('phoneNumber', e.target.value)
-              }
-            />
-          </FormControl>
-          <FormMessage className="space-y-2 text-destructive" match="valueMissing">
-            Veuillez renseigner votre numéro de téléphone.
-          </FormMessage>
-        </FormField>
-        <FormField name="email" className="flex-1 min-w-32">
-          <FormLabel
-            tooltipText={
-              <>
-                hello <br /> world
-              </>
-            }
-            label={<FormLabelTextRequired text="Email" />}
-          />
-          <FormControl asChild>
-            <Input
-              type="email"
-              autoComplete="email"
-              value={presenter.form.submitter.email}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => presenter.updateField('email', e.target.value)}
-            />
-          </FormControl>
-          <FormMessage className="space-y-2 text-destructive" match="valueMissing">
-            Veuillez renseigner votre email.
-          </FormMessage>
-        </FormField>
-      </div>
-
-      <FormField name="country">
-        <FormLabel
-          tooltipText={
-            <>
-              Lorem ipsum dolor sit amet <br /> consectetur adipisicing elit.
-            </>
-          }
-          label={<FormLabelTextRequired text="Pays" />}
-          htmlFor={'country'}
+        <TextField
+          sx={{ flex: 1 }}
+          id="email"
+          label="Email"
+          autoComplete="email"
+          type="email"
+          value={presenter.form.submitter.email}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => presenter.updateField('email', e.target.value)}
         />
-        <FormControl asChild>
-          <Select
-            required
-            value={presenter.form.submitter.country}
-            onValueChange={(value: SubmitterType) => presenter.updateField('country', value)}
-          >
-            <SelectTrigger className="w-full" id="country" aria-label="Pays">
-              <SelectValue placeholder="Sélectionner un pays" aria-label={presenter.form.submitter.country}>
-                {presenter.form.submitter.country}
-              </SelectValue>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Pays</SelectLabel>
-                {presenter.submitterTypes.map((type) => (
-                  <SelectItem key={type} value={type}>
-                    {type}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </FormControl>
-      </FormField>
-      <div className="flex flex-wrap gap-4 min-w-32">
-        <FormField name="zipCode" className="flex-1 min-w-32">
-          <FormLabel
-            tooltipText={
-              <>
-                hello <br /> world
-              </>
-            }
-            label={<FormLabelText text="Code Postal" />}
-          />
-          <FormControl asChild>
-            <Input
-              type="text"
-              autoComplete="postal-code"
-              value={presenter.form.submitter.zipCode}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                presenter.updateField('zipCode', e.target.value)
-              }
-            />
-          </FormControl>
-        </FormField>
-        <FormField name="city" className="flex-1 min-w-32">
-          <FormLabel
-            tooltipText={
-              <>
-                hello <br /> world
-              </>
-            }
-            label={<FormLabelTextRequired text="Ville" />}
-          />
-          <FormControl asChild>
-            <Input
-              type="text"
-              autoComplete="address-level2"
-              value={presenter.form.submitter.city}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => presenter.updateField('city', e.target.value)}
-            />
-          </FormControl>
-          <FormMessage className="space-y-2 text-destructive" match="valueMissing">
-            Veuillez renseigner votre ville.
-          </FormMessage>
-        </FormField>
-      </div>
-      <Button onClick={presenter.onPrevious}>Précédent</Button>
-    </FormRoot>
+      </Box>
+      <FormControl fullWidth>
+        <InputLabel id="country-label">Pays</InputLabel>
+        <Select
+          labelId="country-label"
+          id="country"
+          value={presenter.form.submitter.country}
+          label="Pays"
+          onChange={(event) => presenter.updateField('country', event.target.value)}
+        >
+          {presenter.submitterTypes.map((type) => (
+            <MenuItem key={type} value={type}>
+              {type}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 2
+        }}
+      >
+        <TextField
+          sx={{ flex: 1 }}
+          id="zipCode"
+          label="Code Postal"
+          autoComplete="postal-code"
+          value={presenter.form.submitter.zipCode}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => presenter.updateField('zipCode', e.target.value)}
+        />
+        <TextField
+          sx={{ flex: 1 }}
+          id="city"
+          label="Ville"
+          autoComplete="address-level2"
+          value={presenter.form.submitter.city}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => presenter.updateField('city', e.target.value)}
+        />
+      </Box>
+      <Grid container direction={'row'} alignItems={'center'} spacing={2}>
+        <Grid item>
+          <Button onClick={presenter.onPrevious}>Précédent</Button>
+        </Grid>
+        <Grid item>
+          <Button variant="contained" onClick={presenter.onNext} disabled={!presenter.isSubmittable}>
+            Suivant
+          </Button>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
