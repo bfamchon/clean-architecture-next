@@ -20,11 +20,11 @@ export const Sinister = () => {
   };
   return (
     <Box sx={{ marginTop: 2 }}>
-      <Box sx={{ margin: 2 }}>
+      {/* <Box sx={{ margin: 2 }}>
         <ol className="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
           {steps.map((step, index) => renderStep(step, index))}
         </ol>
-      </Box>
+      </Box> */}
       {stepNumber === FormStep.INSURANCE_CONTRACT && <InsuranceContractSection />}
       {stepNumber === FormStep.SUBMITTER && <SubmitterSection />}
     </Box>

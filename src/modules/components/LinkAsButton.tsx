@@ -1,8 +1,6 @@
-import { buttonVariants } from '@/modules/components/ui/buttonVariants';
-import { cn } from '@/modules/shared/utils';
+import { Button } from '@mui/material';
 import Link from 'next/link';
 import React from 'react';
-
 interface LinkAsButtonProps {
   to: string;
   className?: string;
@@ -11,8 +9,8 @@ interface LinkAsButtonProps {
 
 export const LinkAsButton: React.FC<LinkAsButtonProps> = ({ to, className, children }) => {
   return (
-    <Link href={to} className={cn(buttonVariants({ variant: 'default', size: 'default' }), className)}>
-      {children}
+    <Link href={to} passHref>
+      <Button variant="contained">{children}</Button>
     </Link>
   );
 };
